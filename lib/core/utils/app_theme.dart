@@ -11,7 +11,7 @@ class Themes {
       
       brightness: Brightness.light,
       //primaryColor: AppColors.primaryColor,
-      buttonTheme: ButtonThemeData(
+      buttonTheme: const ButtonThemeData(
         buttonColor: Colors.blue,
         textTheme: ButtonTextTheme.primary,
       ),

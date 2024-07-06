@@ -4,7 +4,6 @@ import 'package:forme_app/core/utils/app_colors.dart';
 import 'package:forme_app/core/utils/text_styles.dart';
 import 'package:forme_app/core/widgets/custom_app_bar_arrow_button.dart';
 import 'package:forme_app/core/widgets/two_buttons.dart';
-import 'package:forme_app/features/trainee_features/search/presentation/views/filter/sections/reviews_radio.dart';
 import 'package:forme_app/features/trainee_features/search/presentation/views/widgets/filters_types.dart';
 import 'package:forme_app/features/trainee_features/search/presentation/views/filter/sections/slider_price_range.dart';
 
@@ -66,7 +65,7 @@ class _FilterScreenState extends State<FilterScreen> {
                       style: TextStyles.textStyleSemiBold.copyWith(
                           color: AppColors.n900Black, fontSize: 16.sp)),
                   SizedBox(height: 16.h),
-                  const ReviewsRadio(),
+                 // const ReviewsRadio(),
                   Text('Facilities',
                       style: TextStyles.textStyleSemiBold.copyWith(
                           color: AppColors.n900Black, fontSize: 16.sp)),

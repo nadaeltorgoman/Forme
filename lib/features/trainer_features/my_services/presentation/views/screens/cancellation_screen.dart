@@ -8,7 +8,9 @@ import 'package:forme_app/features/trainer_features/my_services/presentation/vie
 import 'package:forme_app/features/trainer_features/trainer_preference/presentation/views/widgets/text_area_field.dart';
 
 class CancellationScreen extends StatelessWidget {
-  const CancellationScreen({super.key});
+  const CancellationScreen({super.key, this.name = 'Hussein Salem'});
+  final String routeName = '/cancellation_screen';
+  final String name;
 
   @override
   Widget build(BuildContext context) {
@@ -23,9 +25,9 @@ class CancellationScreen extends StatelessWidget {
           },
         ),
         title: RichText(
-          text: const TextSpan(
+          text: TextSpan(
             children: [
-              TextSpan(
+              const TextSpan(
                 text: 'Session: ',
                 style: TextStyle(
                   color: Colors.black,
@@ -34,8 +36,8 @@ class CancellationScreen extends StatelessWidget {
                 ),
               ),
               TextSpan(
-                text: 'Hussein Salem',
-                style: TextStyle(
+                text: name,
+                style: const TextStyle(
                   color: AppColors.primaryColor,
                   fontSize: 18,
                   fontWeight: FontWeight.w700,
@@ -55,8 +57,7 @@ class CancellationScreen extends StatelessWidget {
                 children: [
                   Text(
                     "Please select a reason for cancellation: ",
-                    style:
-                        TextStyles.textStyleRegular.copyWith(fontSize: 14.sp),
+                    style: TextStyles.textStyleRegular.copyWith(fontSize: 14.sp),
                   ),
                   SizedBox(
                     height: 16.h,
@@ -67,8 +68,7 @@ class CancellationScreen extends StatelessWidget {
                   ),
                   Text(
                     'Note to Trainer',
-                    style: TextStyles.textStyleSemiBold
-                        .copyWith(fontSize: 14.sp, color: AppColors.n900Black),
+                    style: TextStyles.textStyleSemiBold.copyWith(fontSize: 14.sp, color: AppColors.n900Black),
                   ),
                   SizedBox(
                     height: 8.h,

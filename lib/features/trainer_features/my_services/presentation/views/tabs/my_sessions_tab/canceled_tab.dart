@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:forme_app/core/utils/app_colors.dart';
+import 'package:forme_app/features/trainer_features/my_services/data/my_session_cancelled_model.dart';
 import 'package:forme_app/features/trainer_features/my_services/presentation/views/widgets/my_sessions_card.dart';
 
 class CancelledTab extends StatelessWidget {
@@ -16,11 +17,17 @@ class CancelledTab extends StatelessWidget {
           children: [
             Expanded(
               child: ListView.builder(
-                itemCount: 10,
+                itemCount: mySessionCancelledModel.length,
                 itemBuilder: (context, index) {
                   return Padding(
                       padding: EdgeInsets.symmetric(horizontal: 16.w),
-                      child: const MySessionsCard());
+                      child: MySessionsCard(
+                          name: mySessionCancelledModel[index].name,
+                          date: mySessionCancelledModel[index].date,
+                          from: mySessionCancelledModel[index].from,
+                          to: mySessionCancelledModel[index].to,
+                          callType: mySessionCancelledModel[index].callType
+                      ));
                 },
               ),
             ),

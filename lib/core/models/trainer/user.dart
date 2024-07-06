@@ -1,3 +1,6 @@
+import 'package:hive/hive.dart';
+
+part 'user.g.dart';
 class User {
   int? id;
   String? username;

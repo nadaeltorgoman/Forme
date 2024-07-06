@@ -1,5 +1,5 @@
 class MyProgramsCardsModel {
-  String type, state, title, duration;
+  String type, state, title, duration, image;
   double price, rating;
   int reviews, id, clients;
   MyProgramsCardsModel({
@@ -7,6 +7,7 @@ class MyProgramsCardsModel {
     required this.type,
     required this.state,
     required this.title,
+    required this.image,
     required this.clients,
     required this.duration,
     required this.price,
@@ -21,6 +22,7 @@ List<MyProgramsCardsModel> myProgramsCardsModel = [
     type: 'Yoga',
     state: 'Online',
     title: 'Mindful Movement',
+    image: 'card_image.jpg',
     clients: 23,
     duration: '4 weeks',
     price: 150.00,
@@ -32,6 +34,7 @@ List<MyProgramsCardsModel> myProgramsCardsModel = [
     type: 'Gym',
     state: 'Offline',
     title: 'Mindful Movement',
+    image: 'card_image_2.jpg',
     clients: 10,
     duration: '2 weeks',
     price: 200.00,
@@ -43,6 +46,7 @@ List<MyProgramsCardsModel> myProgramsCardsModel = [
     type: 'Yoga',
     state: 'Offline',
     title: 'Mindful Movement',
+    image: 'card_image_3.jpg',
     clients: 40,
     duration: '12 weeks',
     price: 100.00,
@@ -54,6 +58,7 @@ List<MyProgramsCardsModel> myProgramsCardsModel = [
     type: 'Gym',
     state: 'Online',
     title: 'Mindful Movement',
+    image: 'card_image_4.jpg',
     clients: 20,
     duration: '10 weeks',
     price: 120.00,
@@ -65,6 +70,7 @@ List<MyProgramsCardsModel> myProgramsCardsModel = [
     type: 'Yoga',
     state: 'Offline',
     title: 'Mindful Movement',
+    image: 'card_image_5.jpg',
     clients: 23,
     duration: '4 weeks',
     price: 250.00,
@@ -76,6 +82,7 @@ List<MyProgramsCardsModel> myProgramsCardsModel = [
     type: 'Yoga',
     state: 'Online',
     title: 'Mindful Movement',
+    image: 'card_image_6.jpg',
     clients: 15,
     duration: '4 weeks',
     price: 150.00,
@@ -87,10 +94,11 @@ List<MyProgramsCardsModel> myProgramsCardsModel = [
     type: 'Yoga',
     state: 'Online',
     title: 'Mindful Movement',
+    image: 'card_image.jpg',
     clients: 50,
     duration: '8 weeks',
     price: 150.00,
     rating: 4.5,
-    reviews: 100,
+    reviews: 80,
   ),
 ];

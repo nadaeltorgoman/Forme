@@ -29,11 +29,11 @@ class YourClientsCard extends StatelessWidget {
           children: [
             Row(
               children: [
-                const Center(
+                Center(
                     child: CustomClipRect(
                   height: 58,
                   width: 58,
-                  imagePath: 'assets/image/workout_image.jpg',
+                  imagePath: 'assets/image/avatar/${model.image}',
                 )),
                 SizedBox(
                   width: 8.w,
@@ -67,14 +67,14 @@ class YourClientsCard extends StatelessWidget {
                           text: TextSpan(
                               text: model.duration,
                               style: TextStyles.textStyleRegular.copyWith(
-                                  fontSize: 11.sp,
+                                  fontSize: 11,
                                   color: AppColors.p200PrimaryColor),
                               children: <TextSpan>[
                                 const TextSpan(text: ' '),
                                 TextSpan(
                                   text: model.clientType,
                                   style: TextStyles.textStyleRegular.copyWith(
-                                      fontSize: 11.sp,
+                                      fontSize: 11,
                                       color: AppColors.p200PrimaryColor),
                                 ),
                               ]),
@@ -127,7 +127,7 @@ class YourClientsCard extends StatelessWidget {
                           print('Cancel');
                         }
                         Navigator.of(context).push(
-                            PageSlideTransition(const CancellationScreen()));
+                            PageSlideTransition(CancellationScreen(name: model.clientName)));
                       },
                     ),
                   ],

@@ -5,8 +5,13 @@ import 'package:forme_app/core/utils/app_colors.dart';
 import 'package:forme_app/features/trainer_features/my_services/presentation/views/widgets/custom_popup_menu.dart';
 
 class MySessionsCard extends StatefulWidget {
-  const MySessionsCard({super.key, this.isCancelled = false});
+  const MySessionsCard({super.key, this.isCancelled = false, required this.name, required this.callType, required this.date, required this.from, required this.to,});
   final bool isCancelled;
+  final String name;
+  final String callType;
+  final String date;
+  final String from;
+  final String to;
 
   @override
   State<MySessionsCard> createState() => _MySessionsCardState();
@@ -46,7 +51,7 @@ class _MySessionsCardState extends State<MySessionsCard> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'Hussein Salem',
+                    widget.name,
                     style: TextStyle(
                       color: AppColors.n900Black,
                       fontSize: 12.sp,
@@ -54,7 +59,7 @@ class _MySessionsCardState extends State<MySessionsCard> {
                     ),
                   ),
                   Text(
-                    'Video Call',
+                    widget.callType,
                     style: TextStyle(
                       color: AppColors.n100Gray,
                       fontSize: 12.sp,
@@ -62,7 +67,7 @@ class _MySessionsCardState extends State<MySessionsCard> {
                     ),
                   ),
                   Text(
-                    '15 Nov',
+                    widget.date,
                     style: TextStyle(
                       color: AppColors.primaryColor,
                       fontSize: 12.sp,
@@ -86,7 +91,7 @@ class _MySessionsCardState extends State<MySessionsCard> {
                   Row(
                     children: [
                       Text(
-                        '7:00',
+                        widget.from,
                         style: TextStyle(
                           color: AppColors.n900Black,
                           fontSize: 12.sp,
@@ -102,7 +107,7 @@ class _MySessionsCardState extends State<MySessionsCard> {
                         ),
                       ),
                       Text(
-                        '7:15',
+                        widget.to,
                         style: TextStyle(
                           color: AppColors.n900Black,
                           fontSize: 12.sp,

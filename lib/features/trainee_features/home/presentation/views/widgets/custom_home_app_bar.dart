@@ -5,6 +5,8 @@ import 'package:flutter_svg/svg.dart';
 import '../../../../../../core/utils/app_colors.dart';
 import '../../../../../../core/utils/icons_image_pathes.dart';
 import '../../../../../../core/utils/text_styles.dart';
+import '../../../../../../local_storage_data/auth_local/tokens.dart';
+import '../../../../../../local_storage_data/auth_local/user_type.dart';
 import 'custom_search_widget.dart';
 import 'map_popup_menu.dart';
 
@@ -18,14 +20,20 @@ class CustomHomeAppBar extends StatelessWidget {
     return SliverAppBar(
       shadowColor: Colors.black.withOpacity(0.5),
       pinned: true,
-      expandedHeight: 150,
+      expandedHeight: 120.h,
       backgroundColor: Colors.white,
-      leadingWidth: 180,
-      toolbarHeight: 70,
+      leadingWidth: 180.w,
+      toolbarHeight: 60.h,
       actions: [
-        Container(
-          margin: const EdgeInsets.only(right: 24),
-          child: SvgPicture.asset(alarmIcon),
+        GestureDetector(
+          onTap: () {
+            RegistrationDataLocal.clearUserType();
+            UserTokenLocal.clearTokens();
+          },
+          child: Container(
+            margin: const EdgeInsets.only(right: 24),
+            child: SvgPicture.asset(alarmIcon),
+          ),
         ),
       ],
       leading: Container(

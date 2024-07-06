@@ -4,8 +4,18 @@ import 'package:forme_app/core/utils/app_colors.dart';
 import 'package:forme_app/core/utils/text_styles.dart';
 
 class TextFieldWithCustomLabel extends StatelessWidget {
-  const TextFieldWithCustomLabel({super.key, required this.isEnabled});
+  const TextFieldWithCustomLabel({
+    super.key,
+    required this.isEnabled,
+    this.controller,
+    this.validator,
+    this.onChanged,
+  });
   final bool isEnabled;
+  final TextEditingController? controller;
+  final String? Function(String?)? validator;
+  final ValueChanged<String>? onChanged;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -20,13 +30,15 @@ class TextFieldWithCustomLabel extends StatelessWidget {
       ),
       child: TextFormField(
         enabled: isEnabled,
+        controller: controller,
+        onChanged: onChanged,
+        autovalidateMode: AutovalidateMode.onUserInteraction,
+        validator: validator,
         cursorColor: AppColors.primaryColor,
-        style: TextStyles.textStyleRegular
-            .copyWith(color: AppColors.n900Black, fontSize: 14.sp),
+        style: TextStyles.textStyleRegular.copyWith(color: AppColors.n900Black, fontSize: 14.sp),
         keyboardType: TextInputType.number,
         decoration: InputDecoration(
-          contentPadding:
-              EdgeInsets.only(left: 8.w, right: 16.w, top: 4.h, bottom: 4.h),
+          contentPadding: EdgeInsets.only(left: 8.w, right: 16.w, top: 4.h, bottom: 4.h),
           labelText: 'Price (EGP)',
           isDense: true,
           floatingLabelBehavior: FloatingLabelBehavior.auto,
@@ -35,12 +47,8 @@ class TextFieldWithCustomLabel extends StatelessWidget {
             fontSize: 12.sp,
             fontWeight: FontWeight.w400,
           ),
-          floatingLabelStyle: TextStyles.textStyleMedium.copyWith(
-              color: AppColors.primaryColor,
-              fontSize: 12.sp,
-              fontWeight: FontWeight.w500),
-          hintStyle: TextStyles.textStyleRegular
-              .copyWith(color: AppColors.n100Gray, fontSize: 12.sp),
+          floatingLabelStyle: TextStyles.textStyleMedium.copyWith(color: AppColors.primaryColor, fontSize: 12.sp, fontWeight: FontWeight.w500),
+          hintStyle: TextStyles.textStyleRegular.copyWith(color: AppColors.n100Gray, fontSize: 12.sp),
           focusedBorder: const UnderlineInputBorder(
             borderSide: BorderSide.none,
           ),

@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:forme_app/app_routing/trainee_routes.dart';
 import 'package:forme_app/app_routing/trainer_routes.dart';
 import '../core/user_type.dart';
-import '../features/trainee_features/home/presentation/views/bottom_bar_screens.dart';
+
+import '../features/trainee_features/home/presentation/views/trainee_home_screen_bottom_nav.dart';
 import '../features/trainer_features/dashboard/presentation/views/home_view.dart';
 
 class AppRouter {
@@ -22,17 +23,19 @@ class AppRouter {
                 const RouteSettings(
                   name: TrainerHomeScreen.routeName,
                 ),
-                context)
+                context,
+              )
             : TraineeRoutes().generateRoute(
                 const RouteSettings(
-                  name: HomeScreen.routeName,
+                  name: TraineeHomeScreenBottomNav.routeName,
                 ),
-                context);
+                context,
+              );
       default:
         return MaterialPageRoute(
-          builder: (_) => Scaffold(
+          builder: (_) => const Scaffold(
             body: Center(
-              child: Text('Error: Route not found'),
+              child: Text('Error: Route not found in main route'),
             ),
           ),
         );

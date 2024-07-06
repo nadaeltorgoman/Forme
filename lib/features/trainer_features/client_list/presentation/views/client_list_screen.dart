@@ -29,18 +29,18 @@ class _ClientListScreenState extends State<ClientListScreen>
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: DefaultTabController(
-        length: 2,
-        child: Scaffold(
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        backgroundColor: AppColors.background,
+        appBar: AppBar(
           backgroundColor: AppColors.background,
-          appBar: AppBar(
-            backgroundColor: AppColors.background,
-            centerTitle: true,
-            title: Text("Client List",
-                style: TextStyles.heading4Bold.copyWith(fontSize: 18.sp)),
-          ),
-          body: Column(
+          centerTitle: true,
+          title: Text("Client List",
+              style: TextStyles.heading4Bold.copyWith(fontSize: 18.sp)),
+        ),
+        body: SafeArea(
+          child: Column(
             children: [
               Padding(
                 padding: EdgeInsets.only(top: 15.6.h, right: 8.w, left: 8.w),

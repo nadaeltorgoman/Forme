@@ -30,11 +30,11 @@ class ClientsRequestsCard extends StatelessWidget {
           children: [
             Row(
               children: [
-                const Center(
+                Center(
                     child: CustomClipRect(
                   height: 58,
                   width: 58,
-                  imagePath: 'assets/image/workout_image.jpg',
+                  imagePath: 'assets/image/avatar/${model.image}',
                 )),
                 SizedBox(
                   width: 8.w,
@@ -117,7 +117,7 @@ class ClientsRequestsCard extends StatelessWidget {
                           print('Cancel');
                         }
                         Navigator.of(context).push(
-                            PageSlideTransition(const CancellationScreen()));
+                            PageSlideTransition(CancellationScreen(name: model.clientName,)));
                       },
                     ),
                   ],

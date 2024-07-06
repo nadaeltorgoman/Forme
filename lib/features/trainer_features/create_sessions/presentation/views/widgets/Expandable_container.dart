@@ -3,28 +3,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:forme_app/core/utils/app_colors.dart';
 import 'package:forme_app/core/utils/text_styles.dart';
+import 'package:forme_app/features/trainer_features/create_sessions/presentation/views/widgets/f_time_range.dart';
+
+import '../../../../../../cache/session_helper.dart';
 
 class ExpandableContainerScreen extends StatelessWidget {
-  const ExpandableContainerScreen({super.key});
+  final List<GlobalKey<ExpandableListViewState>> keys;
+
+  const ExpandableContainerScreen({super.key, required this.keys});
 
   @override
   Widget build(BuildContext context) {
-    List days = [
-      'Saturday',
-      'Sunday',
-      'Monday',
-      'Tuesday',
-      'Wednesday',
-      'Thursday',
-      'Friday'
-    ];
+    List days = ['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
     return Scaffold(
       backgroundColor: AppColors.background,
       body: SizedBox(
         height: MediaQuery.of(context).size.height,
         child: ListView.builder(
           itemBuilder: (BuildContext context, int index) {
-            return ExpandableListView(title: '${days[index]}');
+            return ExpandableListView(title: days[index], key: keys[index]);
           },
           itemCount: days.length,
         ),
@@ -38,13 +35,33 @@ class ExpandableListView extends StatefulWidget {
   const ExpandableListView({super.key, required this.title});
 
   @override
-  State<ExpandableListView> createState() => _ExpandableListViewState();
+  State<ExpandableListView> createState() => ExpandableListViewState();
 }
 
-class _ExpandableListViewState extends State<ExpandableListView> {
+class ExpandableListViewState extends State<ExpandableListView> {
   bool expandFlag = false;
   List<String> sessions = [];
   bool onOffSwitch = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadData();
+  }
+
+  void _loadData() async {
+    sessions = await SessionsHelper.loadSessions(widget.title);
+    onOffSwitch = await SessionsHelper.loadOnOffSwitch(widget.title);
+    expandFlag = await SessionsHelper.loadExpandFlag(widget.title);
+    setState(() {});
+  }
+
+  void saveData() async {
+    await SessionsHelper.saveSessions(widget.title, sessions);
+    await SessionsHelper.saveOnOffSwitch(widget.title, onOffSwitch);
+    await SessionsHelper.saveExpandFlag(widget.title, expandFlag);
+  }
+
   onChanged(bool value) {
     value == false && expandFlag == true
         ? setState(() {
@@ -54,6 +71,7 @@ class _ExpandableListViewState extends State<ExpandableListView> {
         : setState(() {
             onOffSwitch = value;
           });
+    saveData();
   }
 
   static const BorderRadius _expandedBorderRadius = BorderRadius.all(
@@ -76,14 +94,11 @@ class _ExpandableListViewState extends State<ExpandableListView> {
             padding: const EdgeInsets.all(5.0),
             decoration: BoxDecoration(
               color: AppColors.n10Color,
-              borderRadius:
-                  expandFlag ? _collapsedBorderRadius : _expandedBorderRadius,
+              borderRadius: expandFlag ? _collapsedBorderRadius : _expandedBorderRadius,
               border: Border(
                 left: BorderSide(
                   width: 4,
-                  color: expandFlag
-                      ? AppColors.primaryColor.withOpacity(0.75)
-                      : AppColors.n100Gray,
+                  color: expandFlag ? AppColors.primaryColor.withOpacity(0.75) : AppColors.n100Gray,
                 ),
               ),
               boxShadow: const [
@@ -117,11 +132,8 @@ class _ExpandableListViewState extends State<ExpandableListView> {
                   ),
                   IconButton(
                     icon: Icon(
-                      expandFlag
-                          ? Icons.keyboard_arrow_down
-                          : Icons.keyboard_arrow_up,
-                      color:
-                          onOffSwitch ? AppColors.n400color : AppColors.n40Gray,
+                      expandFlag ? Icons.keyboard_arrow_down : Icons.keyboard_arrow_up,
+                      color: onOffSwitch ? AppColors.n400color : AppColors.n40Gray,
                       size: 35.sp,
                     ),
                     onPressed: () {
@@ -130,6 +142,7 @@ class _ExpandableListViewState extends State<ExpandableListView> {
                               expandFlag = !expandFlag;
                             })
                           : null;
+                      saveData();
                     },
                   ),
                 ],
@@ -143,9 +156,7 @@ class _ExpandableListViewState extends State<ExpandableListView> {
               child: Column(
                 children: [
                   ListTile(
-                    title: Text('Set available Time',
-                        style: TextStyles.textStyleRegular
-                            .copyWith(color: AppColors.n400color)),
+                    title: Text('Set available Time', style: TextStyles.textStyleRegular.copyWith(color: AppColors.n400color)),
                     trailing: IconButton(
                       icon: const Icon(
                         Icons.add_circle_outline_outlined,
@@ -156,6 +167,7 @@ class _ExpandableListViewState extends State<ExpandableListView> {
                         setState(() {
                           sessions.add('Session ${sessions.length + 1}');
                         });
+                        saveData();
                       },
                     ),
                   ),
@@ -166,7 +178,7 @@ class _ExpandableListViewState extends State<ExpandableListView> {
                     itemCount: sessions.length,
                     itemBuilder: (context, index) {
                       return ListTile(
-                        // title: const TimeRangePickerWidget(),
+                        title: const TimeRangePickerWidget(),
                         trailing: IconButton(
                           icon: const Icon(
                             Icons.remove_circle_outline,
@@ -177,6 +189,7 @@ class _ExpandableListViewState extends State<ExpandableListView> {
                             setState(() {
                               sessions.removeAt(index);
                             });
+                            saveData();
                           },
                         ),
                       );

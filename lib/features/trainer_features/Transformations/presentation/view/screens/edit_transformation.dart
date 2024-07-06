@@ -58,9 +58,7 @@ class _EditTransformationState extends State<EditTransformation> {
                 ),
                 padding: EdgeInsets.all(4.h),
                 child: SvgPicture.asset(
-                  isEditing
-                      ? 'assets/image/Icon/ok.svg'
-                      : "assets/image/Icon/tabler_pencil.svg",
+                  isEditing ? 'assets/image/Icon/ok.svg' : "assets/image/Icon/tabler_pencil.svg",
                   height: 30.w,
                   width: 30.w,
                 ),
@@ -90,22 +88,10 @@ class _EditTransformationState extends State<EditTransformation> {
                 children: [
                   const ImportMedia(
                     title: 'Upload Image or Video',
+                    //onMediaSelected:
                   ),
                   SizedBox(
                     height: 16.h,
-                  ),
-                  Container(
-                    width: double.infinity,
-                    height: 150,
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: AppColors.n40Gray,
-                        width: 1.h,
-                      ),
-                      borderRadius: BorderRadius.circular(8.dg),
-                    ),
-                    padding: EdgeInsets.all(38.h),
-                    child: SvgPicture.asset('assets/image/Icon/addImage.svg'),
                   ),
                   SizedBox(
                     height: 16.h,

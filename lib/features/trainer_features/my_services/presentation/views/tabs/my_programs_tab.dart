@@ -21,13 +21,14 @@ class MyProgramsTab extends StatelessWidget {
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     mainAxisSpacing: 1,
-                    crossAxisSpacing: 8,
-                    childAspectRatio: 0.85,
+                    crossAxisSpacing: 1,
+                    childAspectRatio: 0.8,
                   ),
                   itemCount: myProgramsCardsModel.length,
                   itemBuilder: (context, index) => CardsItem(
                     isPrograms: true,
                     type: myProgramsCardsModel[index].type,
+                    image: myProgramsCardsModel[index].image,
                     state: myProgramsCardsModel[index].state,
                     reviews: myProgramsCardsModel[index].reviews,
                     rating: myProgramsCardsModel[index].rating,

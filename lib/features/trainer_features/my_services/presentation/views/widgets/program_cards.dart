@@ -1,5 +1,6 @@
 import 'package:figma_squircle/figma_squircle.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:forme_app/core/utils/app_colors.dart';
 import 'package:forme_app/core/utils/text_styles.dart';
@@ -12,6 +13,7 @@ class CardsItem extends StatelessWidget {
     required this.isPrograms,
     required this.type,
     this.state = 'Online',
+    required this.image,
     this.videos = 17,
     required this.title,
     required this.clients,
@@ -22,7 +24,7 @@ class CardsItem extends StatelessWidget {
   });
 
   final bool isPrograms;
-  final String type, state, title, duration;
+  final String type, state, title, duration,image;
   final double price, rating;
   final int reviews, videos, clients;
 
@@ -65,7 +67,7 @@ class CardsItem extends StatelessWidget {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(4),
                     child: Image.asset(
-                      'assets/image/card_image.jpg',
+                      'assets/image/$image',
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -86,16 +88,16 @@ class CardsItem extends StatelessWidget {
                           ),
                           Row(
                             children: [
-                              const Icon(
+                              Icon(
                                 Icons.star_rounded,
-                                size: 14,
+                                size: 10.r,
                                 color: AppColors.starColor,
                               ),
                               Text(
                                 '$rating ($reviews Reviews)',
                                 style: TextStyles.cardTextStyle.copyWith(
                                     color: AppColors.n200Gray,
-                                    fontSize: 9,
+                                    fontSize: 8.sp,
                                     fontWeight: FontWeight.w400),
                               ),
                             ],

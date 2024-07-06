@@ -2,20 +2,21 @@
 import 'package:extended_phone_number_input/consts/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:forme_app/core/utils/app_colors.dart';
 import 'package:forme_app/core/utils/styles.dart';
+import 'package:forme_app/core/utils/text_styles.dart';
 import 'package:forme_app/core/widgets/app_fields/custom_data_field.dart';
 import '../../../../../../core/widgets/app_drop_list/custom_drop_list.dart';
 import '../../../../../../core/widgets/app_fields/custom_phone_field.dart';
 import '../../../../../../core/widgets/app_fields/custom_text_field.dart';
 
-Widget buildTrainerBodyFields({
-  required ValueChanged<String> onNameChanged,
-  required ValueChanged<String> onPhoneChanged,
-  required ValueChanged<String> onGenderChanged,
-  required ValueChanged<String> onCountryChanged,
-  required ValueChanged<String> onSportFieldChanged,
-}) {
+Widget buildTrainerBodyFields(
+  // required ValueChanged<String> onNameChanged,
+  // required ValueChanged<String> onPhoneChanged,
+  // required ValueChanged<String> onBrithChanged,
+  // required final ValueNotifier<String?> genderNotifier,
+  // required final ValueNotifier<String?> countryNotifier,
+  // required final ValueNotifier<String?> sprotFieldNotifier,
+) {
   final List<String> genderItems = ['male', 'female'];
   final List<String> countryItems = ['Egypt', 'USA'];
   final List<String> sportFieldItems = [
@@ -50,7 +51,8 @@ Widget buildTrainerBodyFields({
         title: 'Full Name',
         hintText: 'Hussein Salem Eldeskey',
         keyboardType: TextInputType.name,
-        onChanged: onNameChanged,
+        hintStyle: TextStyles.hintStyle,
+        //onChanged: onNameChanged,
       ),
       SizedBox(height: 16.h),
       CustomPhoneField(
@@ -61,16 +63,7 @@ Widget buildTrainerBodyFields({
         countryListMode: CountryListMode.dialog,
         showSelectedFlag: false,
         border: textFieldBorder(),
-        enabledBorder: textFieldBorder(),
-        focusedBorder: textFieldBorder(
-          color: AppColors.primaryColor,
-          width: 2.0,
-        ),
-        errorBorder: textFieldBorder(
-          color: AppColors.r200ErrorColor,
-          width: 2.0,
-        ),
-        onChanged: onPhoneChanged,
+        //onChanged: onPhoneChanged,
       ),
       SizedBox(height: 16.h),
       CustomDropList(
@@ -88,9 +81,10 @@ Widget buildTrainerBodyFields({
           }
           return null;
         },
-        onChanged: (value) {
-          onGenderChanged(value ?? '');
-        },
+        selectedValueNotifier: ValueNotifier<String?>(null),
+        // onChanged: (value) {
+        //   onGenderChanged(value ?? '');
+        // },
       ),
       SizedBox(height: 16.h),
       CustomDropList(
@@ -108,9 +102,10 @@ Widget buildTrainerBodyFields({
           }
           return null;
         },
-        onChanged: (value) {
-          onCountryChanged(value ?? '');
-        },
+        selectedValueNotifier: ValueNotifier<String?>(null),
+        // onChanged: (value) {
+        //   onCountryChanged(value ?? '');
+        // },
         onSaved: (value) {},
       ),
       SizedBox(height: 16.h),
@@ -129,13 +124,16 @@ Widget buildTrainerBodyFields({
           }
           return null;
         },
-        onChanged: (value) {
-          onSportFieldChanged(value ?? '');
-        },
+        selectedValueNotifier: ValueNotifier<String?>(null),
+        // onChanged: (value) {
+        //   onSportFieldChanged(value ?? '');
+        // },
         onSaved: (value) {},
       ),
       SizedBox(height: 16.h),
-      const CustomDateField()
+      CustomDateField(
+        //onChanged:ValueNotifier<String?>(null),
+      )
     ],
   );
 }

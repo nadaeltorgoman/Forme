@@ -21,7 +21,7 @@ class _TrainerHomeScreenState extends State<TrainerHomeScreen> {
     const SafeArea(child: Center(child: DashboardScreen())),
     const SafeArea(child: MyServicesScreen()),
     const SafeArea(child: ClientListScreen()),
-    const SafeArea(child: Center(child: Text('4'))),
+    const SafeArea(child: Center(child: Text('chat'))),
     const SafeArea(child: TrainerProfileScreen()),
   ];
 

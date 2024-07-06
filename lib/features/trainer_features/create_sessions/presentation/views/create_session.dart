@@ -1,11 +1,16 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:forme_app/core/utils/app_colors.dart';
 import 'package:forme_app/core/utils/text_styles.dart';
 import 'package:forme_app/core/widgets/custom_app_bar_arrow_button.dart';
-import 'package:forme_app/features/trainer_features/create_sessions/presentation/views/screens/Availability.dart';
+import 'package:forme_app/features/trainer_features/create_sessions/presentation/views/screens/availability.dart';
 import 'package:forme_app/features/trainer_features/create_sessions/presentation/views/screens/session_settings.dart';
+
+import '../../../../../core/api/app_dio.dart';
+import '../manager/session_settings_bloc/bloc/session_settings_bloc.dart';
 
 class CreateSessionScreen extends StatelessWidget {
   const CreateSessionScreen({super.key});
@@ -23,8 +28,7 @@ class CreateSessionScreen extends StatelessWidget {
             Navigator.pop(context);
           },
         ),
-        title: Text('Create Session',
-            style: TextStyles.heading4Bold.copyWith(fontSize: 18.sp)),
+        title: Text('Create Session', style: TextStyles.heading4Bold.copyWith(fontSize: 18.sp)),
       ),
       body: Padding(
         padding: EdgeInsets.only(top: 8.0.h, left: 16.w, right: 16.w),
@@ -57,8 +61,7 @@ class CreateSessionScreen extends StatelessWidget {
                       ),
                       Text(
                         'Availability',
-                        style: TextStyles.textStyleRegular
-                            .copyWith(color: Colors.black),
+                        style: TextStyles.textStyleRegular.copyWith(color: Colors.black),
                       ),
                     ],
                   ),
@@ -99,8 +102,7 @@ class CreateSessionScreen extends StatelessWidget {
                       ),
                       Text(
                         'Session Settings',
-                        style: TextStyles.textStyleRegular
-                            .copyWith(color: Colors.black),
+                        style: TextStyles.textStyleRegular.copyWith(color: Colors.black),
                       ),
                     ],
                   ),
@@ -109,7 +111,10 @@ class CreateSessionScreen extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const SessionSettingsScreen(),
+                          builder: (context) => BlocProvider(
+                            create: (context) => SessionSettingsBloc(apiConsumer: AppDio(dio: Dio())),
+                            child: const SessionSettingsScreen(),
+                          ),
                         ),
                       );
                     },

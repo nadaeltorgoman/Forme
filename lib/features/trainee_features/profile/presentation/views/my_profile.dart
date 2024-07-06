@@ -7,7 +7,6 @@ import 'package:forme_app/core/utils/text_styles.dart';
 import 'package:forme_app/core/widgets/custom_app_bar_arrow_button.dart';
 import 'package:forme_app/core/widgets/app_drop_list/custom_drop_list.dart';
 import 'package:forme_app/core/widgets/app_fields/custom_text_field.dart';
-import 'package:forme_app/core/widgets/image_picker/profile_image_picker.dart';
 import 'package:forme_app/features/trainee_features/profile/presentation/views/widgets/my_profile_phone_field.dart';
 import 'package:image_picker/image_picker.dart';
 import '../manager/cubit/my_profile_cubit.dart';
@@ -23,24 +22,23 @@ class MyProfile extends StatefulWidget {
 class _MyProfileState extends State<MyProfile> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
-  //final TextEditingController _birthController = TextEditingController();
   final TextEditingController _heightController = TextEditingController();
   final TextEditingController _weightController = TextEditingController();
-  //final TextEditingController _countryController = TextEditingController();
-  //final TextEditingController _goalController = TextEditingController();
-  //final TextEditingController _physicalActivityLevelController =
-  //    TextEditingController();
+  late ValueNotifier<String?> countryNotifier;
+
   String? name, phone, birth, height, weight, goal, gender, country;
   XFile? _imageFile;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   @override
   void initState() {
-    super.initState();
-    // Set default text for the TextField
     _nameController.text = "Hussein Salem";
     _phoneController.text = "0124822101";
     _heightController.text = "175";
     _weightController.text = "75";
+    countryNotifier = ValueNotifier<String?>(null);
+    super.initState();
+
+
   }
 
   @override
@@ -120,14 +118,14 @@ class _MyProfileState extends State<MyProfile> {
               scrollDirection: Axis.vertical,
               children: [
                 SizedBox(height: 16.0.h),
-                ProfileImagePicker(
-                  imageFile: _imageFile,
-                  onImageSelected: (file) {
-                    setState(() {
-                      _imageFile = file;
-                    });
-                  },
-                ),
+                // ProfileImagePicker(
+                //   imageFile: _imageFile,
+                //   onImageSelected: (file) {
+                //     setState(() {
+                //       _imageFile = file;
+                //     });
+                //   },
+                // ),
                 SizedBox(height: 32.0.h),
                 CustomTextField(
                   controller: _nameController,
@@ -135,6 +133,7 @@ class _MyProfileState extends State<MyProfile> {
                   hintText: 'Hussein Salem Eldesokey',
                   keyboardType: TextInputType.name,
                   enabled: adjustable,
+                  hintStyle: TextStyles.headerStyle,
                   onChanged: (value) {
                     setState(() {
                       name = value;
@@ -155,7 +154,7 @@ class _MyProfileState extends State<MyProfile> {
                         title: 'Height',
                         hintText: '175',
                         keyboardType: TextInputType.number,
-                        enabled: adjustable,
+                        enabled: adjustable, hintStyle: TextStyles.headerStyle,
                         onChanged: (value) {
                           setState(() {
                             height = value;
@@ -186,7 +185,7 @@ class _MyProfileState extends State<MyProfile> {
                       child: CustomTextField(
                         controller: _weightController,
                         title: 'weight',
-                        hintText: '75',
+                        hintText: '75', hintStyle: TextStyles.headerStyle,
                         keyboardType: TextInputType.number,
                         enabled: adjustable,
                         onChanged: (value) {
@@ -233,7 +232,7 @@ class _MyProfileState extends State<MyProfile> {
                       country = value;
                     });
                   },
-                  onSaved: (value) {},
+                  onSaved: (value) {}, selectedValueNotifier: countryNotifier,
                 ),
                 SizedBox(height: 16.h),
                 CustomDropList(
@@ -258,6 +257,7 @@ class _MyProfileState extends State<MyProfile> {
                     });
                   },
                   onSaved: (value) {},
+                  selectedValueNotifier: countryNotifier,
                 ),
                 SizedBox(height: 16.h),
                 CustomDropList(
@@ -282,6 +282,7 @@ class _MyProfileState extends State<MyProfile> {
                     });
                   },
                   onSaved: (value) {},
+                  selectedValueNotifier: countryNotifier,
                 )
               ],
             );

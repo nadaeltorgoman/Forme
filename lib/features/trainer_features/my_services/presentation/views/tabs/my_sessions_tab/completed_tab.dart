@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:forme_app/core/utils/app_colors.dart';
+import 'package:forme_app/features/trainer_features/my_services/data/my_session_completed_model.dart';
 import 'package:forme_app/features/trainer_features/my_services/presentation/views/widgets/my_sessions_card.dart';
 
 class CompletedTab extends StatelessWidget {
@@ -16,12 +17,17 @@ class CompletedTab extends StatelessWidget {
           children: [
             Expanded(
               child: ListView.builder(
-                itemCount: 10,
+                itemCount: mySessionCompletedModel.length,
                 itemBuilder: (context, index) {
                   return Padding(
                       padding: EdgeInsets.symmetric(horizontal: 16.w),
-                      child: const MySessionsCard(
+                      child: MySessionsCard(
                         isCancelled: true,
+                        name: mySessionCompletedModel[index].name,
+                        date: mySessionCompletedModel[index].date,
+                        from: mySessionCompletedModel[index].from,
+                        to: mySessionCompletedModel[index].to,
+                        callType: mySessionCompletedModel[index].callType,
                       ));
                 },
               ),

@@ -32,11 +32,7 @@ class FirstPreferenceTrainer extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 10.h),
-                TextAreaField(
-                    controller:
-                        context.read<TrainerPreferenceCubit>().bioController,
-                    hintText:
-                        'Please share a brief description about yourself'),
+                TextAreaField(controller: context.read<TrainerPreferenceCubit>().bioController, hintText: 'Please share a brief description about yourself'),
                 SizedBox(height: 16.h),
                 const Divider(
                   color: AppColors.n40Gray,
@@ -53,11 +49,12 @@ class FirstPreferenceTrainer extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 24.h),
-                TwoChoices(
-                  option1Text: 'Yes',
-                  option2Text: 'No',
-                  controller:
-                      context.read<TrainerPreferenceCubit>().expInjuries,
+                const TwoChoices(
+                  text1: 'Yes',
+                  text2: 'No',
+                  // controller: context
+                  //     .read<TrainerPreferenceCubit>()
+                  //     .physicalDisabilities,
                 ),
                 SizedBox(height: 16.h),
                 const Divider(
@@ -75,12 +72,12 @@ class FirstPreferenceTrainer extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 24.h),
-                TwoChoices(
-                  option1Text: 'Yes',
-                  option2Text: 'No',
-                  controller: context
-                      .read<TrainerPreferenceCubit>()
-                      .physicalDisabilities,
+                const TwoChoices(
+                  text1: 'Yes',
+                  text2: 'No',
+                  // controller: context
+                  //     .read<TrainerPreferenceCubit>()
+                  //     .physicalDisabilities,
                 ),
                 SizedBox(height: 16.h),
                 const Divider(
@@ -116,15 +113,13 @@ class FirstPreferenceTrainer extends StatelessWidget {
                 ),
                 SizedBox(height: 16.h),
                 LinksTextField(
-                  controller:
-                      context.read<TrainerPreferenceCubit>().facebookUrl,
+                  controller: context.read<TrainerPreferenceCubit>().facebookUrl,
                   hintText: 'Facebook (link)',
                   logo: 'facebook',
                 ),
                 SizedBox(height: 8.h),
                 LinksTextField(
-                  controller:
-                      context.read<TrainerPreferenceCubit>().instagramUrl,
+                  controller: context.read<TrainerPreferenceCubit>().instagramUrl,
                   hintText: 'Instagram (link)',
                   logo: 'instagram_colored',
                 ),

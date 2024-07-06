@@ -21,14 +21,34 @@ class LanguagesSearchScreen extends StatelessWidget {
               children: [
                 const Center(child: SearchTextField()),
                 SizedBox(height: 16.h),
-                const SelectPackage(
-                  isLanguages: true,
+                SelectPackage(
                   isInput: false,
-                  text1: 'English',
-                  text2: 'Arabic',
-                  text3: 'French',
-                  text4: 'Indian',
-                  text5: 'Germany',
+                  text: 'English',
+                  onChanged: (value) {},
+                ),
+                SizedBox(height: 8.h),
+                SelectPackage(
+                  isInput: false,
+                  text: 'Arabic',
+                  onChanged: (value) {},
+                ),
+                SizedBox(height: 8.h),
+                SelectPackage(
+                  isInput: false,
+                  text: 'French',
+                  onChanged: (value) {},
+                ),
+                SizedBox(height: 8.h),
+                SelectPackage(
+                  isInput: false,
+                  text: 'Indian',
+                  onChanged: (value) {},
+                ),
+                SizedBox(height: 8.h),
+                SelectPackage(
+                  isInput: false,
+                  text: 'Germany',
+                  onChanged: (value) {},
                 ),
               ],
             ),
