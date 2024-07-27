@@ -32,6 +32,7 @@ The **Forme fitness app** is a comprehensive platform designed to revolutionize 
 - **Framework**: Flutter
 - **Language**: Dart
 - **State Management**: Bloc and Cubit
+- **Design Pattern**: MVVM
 
 ### Web Dashboard
 - **Technologies**: HTML5, CSS, JavaScript, React, Axios
