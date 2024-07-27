@@ -55,7 +55,7 @@ The **Forme fitness app** is a comprehensive platform designed to revolutionize 
 We have rigorously tested the app's UI and backend to ensure a seamless and bug-free experience for our users.
 
 ## License
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License.
 
 ## Contact
 For any questions or feedback, please contact us at ctrl.group6@gmail.com.
